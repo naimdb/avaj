@@ -41,7 +41,12 @@ public class Scenario {
             throw new SimulationException("Aucun observateur n'a été ajouté au scénario");
         }
 
-        Run.runSimulator(nbLog, observers);
+		try (Simulation sim = new Simulation("simulation.txt", true)) {
+    Run.runSimulator(nbLog, observers);
+} catch (IOException e) {
+    throw new SimulationException("Erreur lors de l'initialisation du fichier de log", e);
+}
+
     }
 
     private static Long numberOne(String line) throws SimulationException {

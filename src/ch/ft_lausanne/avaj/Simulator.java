@@ -21,5 +21,4 @@ public class Simulator {
             System.err.println("Erreur");
         }
     }
-
 }

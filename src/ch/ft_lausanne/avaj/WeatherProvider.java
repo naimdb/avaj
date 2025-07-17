@@ -1,6 +1,6 @@
 package ch.ft_lausanne.avaj;
 
-public class WeatherProvider extends Tower{
+public class WeatherProvider {
     private static WeatherProvider instance = null;
     private String[] weather = {"RAIN", "FOG", "SUN", "SNOW"};
 
@@ -17,5 +17,4 @@ public class WeatherProvider extends Tower{
         int index = (coordinates.getLongitude() + coordinates.getLatitude() + coordinates.getHeight()) % weather.length;
         return weather[index];
     }
-
 }
