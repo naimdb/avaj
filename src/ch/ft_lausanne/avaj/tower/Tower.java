@@ -6,22 +6,25 @@ import ch.ft_lausanne.avaj.Simulation;
 import ch.ft_lausanne.avaj.aircraft.Flyable;
 
 public class Tower {
-    private static List<Flyable> observers = new ArrayList<>();
+    private List<Flyable> observers = new ArrayList<>();
 
-    public static void register(Flyable p_flyable){
-        String msg = "registered to weather tower.";
-        Simulation.towerLog(msg, p_flyable);
+    public void register(Flyable p_flyable){
         observers.add(p_flyable);
+		p_flyable.registerTower((WeatherTower) this);
     }
 
-    public static void unregister(Flyable p_flyable){
+    public void unregister(Flyable p_flyable){
         Simulation.landingLog(p_flyable);
         observers.remove(p_flyable);
     }
 
-    protected void conditionChanged(){
-        for (Flyable observer : observers) {
+protected void conditionChanged(){
+        List<Flyable> observersCopy = new ArrayList<>(observers);
+        for (Flyable observer : observersCopy) {
             observer.updateConditions();
+            if (observer.getCoordinate().getHeight() <= 0) {
+                unregister(observer);
+            }
         }
     }
 }

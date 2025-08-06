@@ -4,6 +4,7 @@ import ch.ft_lausanne.avaj.Coordinates;
 
 public class AircraftFactory {
     private static AircraftFactory instance = null;
+    private static Long nextId = 1L;
     
     private AircraftFactory() {}
     
@@ -15,10 +16,11 @@ public class AircraftFactory {
     }
 
     public Flyable newAircraft(String p_type, String p_name, Coordinates p_coordinates) {
+        Long id = nextId++;
         return switch (p_type) {
-            case "Helicopter" -> new Helicopter(1L, p_name, p_coordinates);
-            case "JetPlane" -> new JetPlane(1L, p_name, p_coordinates);
-            case "Baloon" -> new Baloon(1L, p_name, p_coordinates);
+            case "Helicopter" -> new Helicopter(id, p_name, p_coordinates);
+            case "JetPlane" -> new JetPlane(id, p_name, p_coordinates);
+            case "Baloon" -> new Baloon(id, p_name, p_coordinates);
             default -> null;
         };
     }

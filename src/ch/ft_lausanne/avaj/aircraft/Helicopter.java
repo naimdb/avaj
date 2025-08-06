@@ -37,6 +37,10 @@ public class Helicopter extends Aircraft implements Flyable {
                 String msg = "Mais il neige ? Mais c'est impossible !!! 🌨️";
                 Simulation.flyableLog(msg, this);
             }
+            default -> {
+                String msg = "Météo inconnue !";
+                Simulation.flyableLog(msg, this);
+            }
         }
     }
 

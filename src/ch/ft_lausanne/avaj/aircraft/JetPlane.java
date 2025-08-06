@@ -33,7 +33,7 @@ public class JetPlane extends Aircraft implements Flyable {
                 Simulation.flyableLog(msg, this);
             }
             case "SNOW" -> {
-                coordinates.setHeight(coordinates.getHeight() - 12);
+                coordinates.setHeight(coordinates.getHeight() - 7);
                 String msg = "Mais il neige ? Mais c'est impossible !!! 🌨️";
                 Simulation.flyableLog(msg, this);
             }

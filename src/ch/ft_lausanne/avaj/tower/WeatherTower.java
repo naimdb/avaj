@@ -9,9 +9,6 @@ public class WeatherTower extends Tower {
     }
 
     public void changeWeather() {
-        conditionsChanged();
-    }
-
-    private void conditionsChanged() {
+        conditionChanged();
     }
 }

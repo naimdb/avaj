@@ -15,7 +15,6 @@ public class Baloon extends Aircraft implements Flyable {
 		if (weatherTower == null) return;
 
 		String weather = weatherTower.getWeather(this.coordinates);
-		
         switch (weather) {
 			case "SUN" -> {
 				coordinates.setLongitude(coordinates.getLongitude() + 2);

@@ -1,41 +1,44 @@
 package ch.ft_lausanne.avaj;
 
+import ch.ft_lausanne.avaj.exceptions.*;
+
 public class Verify {
 
-    static String verifyType(String type) throws Exception {
+    static String verifyType(String type) throws UnknownAircraftTypeException {
         if (!type.matches("(Baloon|Helicopter|JetPlane)")) {
-            throw new SimulationException("Erreur lors de la lecture du scénario: Le type d'aéronef est inconnu");
+            throw new UnknownAircraftTypeException(type);
         }
         return type;
     }
-    static String verifyName(String name) throws Exception {
+
+    static String verifyName(String name) throws InvalidAircraftNameException {
         if (!name.matches("^[A-Z][a-z0-9]+$")) {
-            throw new SimulationException("Erreur lors de la lecture du scénario: Le nom de l'aéronef est invalide");
+            throw new InvalidAircraftNameException(name);
         }
         return name;
     }
 
-    static int verifyLongitude(int l) throws Exception {
-        if (l < 0) {
-            throw new SimulationException("Erreur lors de la lecture du scénario: La longitude est invalide");
+    static int verifyLongitude(int longitude) throws InvalidLongitudeException {
+        if (longitude < 0) {
+            throw new InvalidLongitudeException(longitude);
         }
-        return l;
+        return longitude;
     }
 
-    static int verifyLatitude(int l) throws Exception {
-        if (l < 0) {
-            throw new SimulationException("Erreur lors de la lecture du scénario: La latitude est invalide");
+    static int verifyLatitude(int latitude) throws InvalidLatitudeException {
+        if (latitude < 0) {
+            throw new InvalidLatitudeException(latitude);
         }
-        return l;
+        return latitude;
     }
 
-	static int verifyHeight(int h) throws Exception {
-		if (h < 0) {
-			throw new SimulationException("Erreur lors de la lecture du scénario: La hauteur est invalide");
-		}
-		if (h > 100) {
-			return 100;
-		}
-		return h;
-	}
+    static int verifyHeight(int height) throws InvalidHeightException {
+        if (height < 0) {
+            throw new InvalidHeightException(height);
+        }
+        if (height > 100) {
+            return 100;
+        }
+        return height;
+    }
 }
